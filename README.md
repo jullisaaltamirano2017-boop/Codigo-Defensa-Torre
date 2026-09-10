@@ -1,143 +1,47 @@
-```mermaid
-classDiagram
-    direction LR
+# Código Defensa Torre (Tower Defense)
 
-    class Torre {
-        -int id
-        -String nombre
-        -String tipo
-        -int posicion
-        -int danio
-        -int rango
-        -int costo
-        +Torre(int, String, String, int, int, int, int)
-        +getId() int
-        +getNombre() String
-        +getTipo() String
-        +getPosicion() int
-        +getDanio() int
-        +getRango() int
-        +getCosto() int
-        +toString() String
-    }
+<p align="center">
+  <b>Prueba práctica de Estructuras de datos para un videojuego</b>
+</p>
 
-    class Enemigo {
-        -int id
-        -String tipo
-        -int vida
-        -int velocidad
-        -int posicion
-        -int recompensa
-        +Enemigo(int, String, int, int, int, int)
-        +getId() int
-        +getTipo() String
-        +getVida() int
-        +setVida(int) void
-        +getVelocidad() int
-        +getPosicion() int
-        +setPosicion(int) void
-        +getRecompensa() int
-        +toString() String
-    }
+---
 
-    class Oleada {
-        -int idOleada
-        -int cantidadEnemigos
-        -String tipoEnemigo
-        -int vidaBase
-        -int velocidadBase
-        +Oleada(int, int, String, int, int)
-        +getIdOleada() int
-        +getCantidadEnemigos() int
-        +getTipoEnemigo() String
-        +getVidaBase() int
-        +getVelocidadBase() int
-        +toString() String
-    }
+## Tabla de Contenidos
+1. [Descripción del Proyecto](#-descripción-del-proyecto)
+2. [Arquitectura y Paquetes](#-arquitectura-y-paquetes)
+3. [Estructuras de Datos Implementadas](#-estructuras-de-datos-implementadas)
+4. [Diagrama del Sistema](#-diagrama-del-sistema)
+5. [Requisitos y Ejecución](#-requisitos-y-ejecución)
 
-    class ListaSecuencialTorres {
-        -Torre[] arreglo
-        -int tamanio
-        -int CAPACIDAD_MAXIMA
-        +ListaSecuencialTorres()
-        +insertar(Torre) boolean
-        +eliminarPorId(int) boolean
-        +buscarPorId(int) Torre
-        +mostrar() void
-        +contarActivas() int
-        +getTorre(int) Torre
-    }
+---
 
-    class NodoEnemigo {
-        -Enemigo enemigo
-        -NodoEnemigo anterior
-        -NodoEnemigo siguiente
-        +NodoEnemigo(Enemigo)
-        +getEnemigo() Enemigo
-        +setEnemigo(Enemigo) void
-        +getAnterior() NodoEnemigo
-        +setAnterior(NodoEnemigo) void
-        +getSiguiente() NodoEnemigo
-        +setSiguiente(NodoEnemigo) void
-    }
+## Descripción del Proyecto
 
-    class ListaDobleEnemigos {
-        -NodoEnemigo primero
-        -NodoEnemigo ultimo
-        -int tamanio
-        +ListaDobleEnemigos()
-        +insertarAlFinal(Enemigo) void
-        +eliminarPorId(int) boolean
-        +buscarPorId(int) Enemigo
-        +recorrerAdelante() void
-        +recorrerAtras() void
-        +getPrimero() NodoEnemigo
-        +getTamanio() int
-    }
+**Código Defensa Torre** es una aplicación desarrollada en **Java** bajo el paradigma de **Programación Orientada a Objetos (POO)**. El sistema simula la lógica de control de un juego de defensa de torres, gestionando entidades clave como torres de defensa, enemigos y oleadas mediante el uso exclusivo de **estructuras de datos hechas desde cero** sin depender de las colecciones predeterminadas de Java como `ArrayList` o `LinkedList` para la lógica principal de negocio.
 
-    class NodoOleada {
-        -Oleada oleada
-        -NodoOleada siguiente
-        +NodoOleada(Oleada)
-        +getOleada() Oleada
-        +setOleada(Oleada) void
-        +getSiguiente() NodoOleada
-        +setSiguiente(NodoOleada) void
-    }
+---
 
-    class ListaCircularOleadas {
-        -NodoOleada ultimo
-        -NodoOleada oleadaActual
-        -int tamanio
-        +ListaCircularOleadas()
-        +registrar(Oleada) void
-        +mostrar() void
-        +avanzarSiguienteOleada() Oleada
-        +reiniciarCiclo() void
-        +getTamanio() int
-    }
+## Arquitectura y Paquetes
 
-    class TowerDefenseApp {
-        -ListaSecuencialTorres listaTorres
-        -ListaDobleEnemigos listaEnemigos
-        -ListaCircularOleadas listaOleadas
-        -int vidasJugador
-        -int FIN_CAMINO
-        -int contadorIdEnemigos
-        +main(String[] args) void
-        -inicializarCasoPrueba() void
-        -registrarTorreInteractivo(Scanner) void
-        -registrarOleadaInteractivo(Scanner) void
-        -iniciarSiguienteOleadaAccion() void
-        -avanzarTurno() void
-        -mostrarEstadoGeneral() void
-    }
+El proyecto se encuentra estructurado de manera modular para separar la interfaz de usuario, las entidades del modelo y la lógica de negocio:
 
-    ListaSecuencialTorres "1" o-- "0..50" Torre : "almacena en arreglo"
-    NodoEnemigo "1" --> "1" Enemigo : "contiene"
-    ListaDobleEnemigos "1" o-- "0..*" NodoEnemigo : "enlaza primero y último"
-    NodoOleada "1" --> "1" Oleada : "contiene"
-    ListaCircularOleadas "1" o-- "0..*" NodoOleada : "enlaza en bucle circular"
-    TowerDefenseApp "1" --> "1" ListaSecuencialTorres : "utiliza"
-    TowerDefenseApp "1" --> "1" ListaDobleEnemigos : "utiliza"
-    TowerDefenseApp "1" --> "1" ListaCircularOleadas : "utiliza"
+```text
+Codigo-Defensa-Torre/
+│
+├── app/
+│   └── TowerDefenseApp.java          # Clase principal con la interfaz de consola e interacción (Scanner)
+│
+├── modelo/
+│   ├── Torre.java                    # Entidad que define atributos y métodos de las torres
+│   ├── Enemigo.java                  # Entidad que define atributos y estados de los enemigos
+│   └── Oleada.java                   # Entidad que agrupa y administra las oleadas
+│
+├── negocio/
+│   ├── ListaSecuencialTorres.java    # Gestión de torres mediante arreglos/listas secuenciales
+│   ├── ListaDobleEnemigos.java       # Gestión dinámica de enemigos con lista doblemente enlazada
+│   ├── ListaCircularOleadas.java     # Gestión cíclica de las oleadas del juego
+│   ├── NodoEnemigo.java              # Nodo para la lista doble de enemigos
+│   └── NodoOleada.java               # Nodo para la lista circular de oleadas
+│
+└── Diagrama/
+    └── Diagrama.md                   # Documentación gráfica y esquemas UML del sistema
