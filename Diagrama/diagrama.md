@@ -4,133 +4,128 @@ classDiagram
 
     class Torre {
         -int id
-        -String nombre
-        -String tipo
+        -str nombre
+        -str tipo
         -int posicion
         -int danio
         -int rango
         -int costo
-        +Torre(int, String, String, int, int, int, int)
-        +getId() int
-        +getNombre() String
-        +getTipo() String
-        +getPosicion() int
-        +getDanio() int
-        +getRango() int
-        +getCosto() int
-        +toString() String
+        +__init__(id, nombre, tipo, posicion, danio, rango, costo)
+        +get_id() int
+        +get_nombre() str
+        +get_tipo() str
+        +get_posicion() int
+        +get_danio() int
+        +get_rango() int
+        +get_costo() int
+        +__str__() str
     }
 
     class Enemigo {
         -int id
-        -String tipo
+        -str tipo
         -int vida
         -int velocidad
         -int posicion
         -int recompensa
-        +Enemigo(int, String, int, int, int, int)
-        +getId() int
-        +getTipo() String
-        +getVida() int
-        +setVida(int) void
-        +getVelocidad() int
-        +getPosicion() int
-        +setPosicion(int) void
-        +getRecompensa() int
-        +toString() String
+        +__init__(id, tipo, vida, velocidad, posicion, recompensa)
+        +get_id() int
+        +get_tipo() str
+        +get_vida() int
+        +set_vida(vida) void
+        +get_velocidad() int
+        +get_posicion() int
+        +set_posicion(posicion) void
+        +get_recompensa() int
+        +__str__() str
     }
 
     class Oleada {
-        -int idOleada
-        -int cantidadEnemigos
-        -String tipoEnemigo
-        -int vidaBase
-        -int velocidadBase
-        +Oleada(int, int, String, int, int)
-        +getIdOleada() int
-        +getCantidadEnemigos() int
-        +getTipoEnemigo() String
-        +getVidaBase() int
-        +getVelocidadBase() int
-        +toString() String
+        -int id_oleada
+        -int cantidad_enemigos
+        -str tipo_enemigo
+        -int vida_base
+        -int velocidad_base
+        +__init__(id_oleada, cantidad_enemigos, tipo_enemigo, vida_base, velocidad_base)
+        +get_id_oleada() int
+        +get_cantidad_enemigos() int
+        +get_tipo_enemigo() str
+        +get_vida_base() int
+        +get_velocidad_base() int
+        +__str__() str
     }
 
     class ListaSecuencialTorres {
-        -Torre[] arreglo
+        -list arreglo
         -int tamanio
-        -int CAPACIDAD_MAXIMA
-        +ListaSecuencialTorres()
-        +insertar(Torre) boolean
-        +eliminarPorId(int) boolean
-        +buscarPorId(int) Torre
+        -int capacidad_maxima
+        +__init__(capacidad_maxima)
+        +insertar(torre) bool
+        +eliminar_por_id(id) bool
+        +buscar_por_id(id) Torre
         +mostrar() void
-        +contarActivas() int
-        +getTorre(int) Torre
+        +contar_activas() int
+        +get_torre(indice) Torre
     }
 
     class NodoEnemigo {
         -Enemigo enemigo
         -NodoEnemigo anterior
         -NodoEnemigo siguiente
-        +NodoEnemigo(Enemigo)
-        +getEnemigo() Enemigo
-        +setEnemigo(Enemigo) void
-        +getAnterior() NodoEnemigo
-        +setAnterior(NodoEnemigo) void
-        +getSiguiente() NodoEnemigo
-        +setSiguiente(NodoEnemigo) void
+        +__init__(enemigo)
+        +get_enemigo() Enemigo
+        +set_enemigo(enemigo) void
+        +get_anterior() NodoEnemigo
+        +set_anterior(nodo) void
+        +get_siguiente() NodoEnemigo
+        +set_siguiente(nodo) void
     }
 
     class ListaDobleEnemigos {
         -NodoEnemigo primero
         -NodoEnemigo ultimo
         -int tamanio
-        +ListaDobleEnemigos()
-        +insertarAlFinal(Enemigo) void
-        +eliminarPorId(int) boolean
-        +buscarPorId(int) Enemigo
-        +recorrerAdelante() void
-        +recorrerAtras() void
-        +getPrimero() NodoEnemigo
-        +getTamanio() int
+        +__init__()
+        +insertar_al_final(enemigo) void
+        +eliminar_por_id(id) bool
+        +buscar_por_id(id) Enemigo
+        +recorrer_adelante() void
+        +recorrer_atras() void
+        +get_primero() NodoEnemigo
+        +get_tamanio() int
     }
 
     class NodoOleada {
         -Oleada oleada
         -NodoOleada siguiente
-        +NodoOleada(Oleada)
-        +getOleada() Oleada
-        +setOleada(Oleada) void
-        +getSiguiente() NodoOleada
-        +setSiguiente(NodoOleada) void
+        +__init__(oleada)
+        +get_oleada() Oleada
+        +set_oleada(oleada) void
+        +get_siguiente() NodoOleada
+        +set_siguiente(nodo) void
     }
 
     class ListaCircularOleadas {
         -NodoOleada ultimo
-        -NodoOleada oleadaActual
+        -NodoOleada oleada_actual
         -int tamanio
-        +ListaCircularOleadas()
-        +registrar(Oleada) void
+        +__init__()
+        +registrar(oleada) void
         +mostrar() void
-        +avanzarSiguienteOleada() Oleada
-        +reiniciarCiclo() void
-        +getTamanio() int
+        +avanzar_siguiente_oleada() Oleada
+        +reiniciar_ciclo() void
+        +get_tamanio() int
     }
 
-    class TowerDefenseApp {
-        -ListaSecuencialTorres listaTorres
-        -ListaDobleEnemigos listaEnemigos
-        -ListaCircularOleadas listaOleadas
-        -int vidasJugador
-        -int FIN_CAMINO
-        -int contadorIdEnemigos
-        +main(String[] args) void
-        -inicializarCasoPrueba() void
-        -registrarTorreInteractivo(Scanner) void
-        -registrarOleadaInteractivo(Scanner) void
-        -iniciarSiguienteOleadaAccion() void
-        -avanzarTurno() void
-        -mostrarEstadoGeneral() void
+    class TowerDefenseGUI {
+        -ListaSecuencialTorres lista_torres
+        -ListaDobleEnemigos lista_enemigos
+        -ListaCircularOleadas lista_oleadas
+        -int vidas_jugador
+        -int fin_camino
+        +__init__(root)
+        +inicializar_caso_prueba() void
+        +ejecutar() void
     }
 
     ListaSecuencialTorres "1" o-- "0..50" Torre : "almacena en arreglo"
@@ -138,6 +133,6 @@ classDiagram
     ListaDobleEnemigos "1" o-- "0..*" NodoEnemigo : "enlaza primero y último"
     NodoOleada "1" --> "1" Oleada : "contiene"
     ListaCircularOleadas "1" o-- "0..*" NodoOleada : "enlaza en bucle circular"
-    TowerDefenseApp "1" --> "1" ListaSecuencialTorres : "utiliza"
-    TowerDefenseApp "1" --> "1" ListaDobleEnemigos : "utiliza"
-    TowerDefenseApp "1" --> "1" ListaCircularOleadas : "utiliza"
+    TowerDefenseGUI "1" --> "1" ListaSecuencialTorres : "utiliza"
+    TowerDefenseGUI "1" --> "1" ListaDobleEnemigos : "utiliza"
+    TowerDefenseGUI "1" --> "1" ListaCircularOleadas : "utiliza"
