@@ -8,7 +8,7 @@ class ListaSecuencialTorres:
         self.arreglo = [None] * self.CAPACIDAD_MAXIMA
         self.tamanio = 0
 
-    def insetar(self, torre):
+    def insertar(self, torre):
         if self.tamanio >= self.CAPACIDAD_MAXIMA:
             return False
         self.arreglo[self.tamanio] = torre
