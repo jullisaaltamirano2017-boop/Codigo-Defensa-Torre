@@ -1,4 +1,4 @@
-class NodoEnemigo:
+class nodo_enemigo:
     def __init__(self, enemigo):
         self.enemigo = enemigo
         self.anterior = None
