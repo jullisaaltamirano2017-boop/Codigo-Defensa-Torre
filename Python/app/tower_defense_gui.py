@@ -9,6 +9,7 @@ Ejecutar con:  python3 tower_defense_gui.py
 """
 
 import tkinter as tk
+import sys, os
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from tkinter import ttk, messagebox
 from tkinter import ttk, messagebox
