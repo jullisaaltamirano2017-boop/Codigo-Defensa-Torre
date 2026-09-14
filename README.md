@@ -1,47 +1,55 @@
 # Código Defensa Torre (Tower Defense)
 
-<p align="center">
-  <b>Prueba práctica de Estructuras de datos para un videojuego</b>
-</p>
+Prueba práctica de Estructuras de Datos aplicada a un videojuego bajo el paradigma de Programación Orientada a Objetos (POO).
 
 ---
 
 ## Tabla de Contenidos
-1. [Descripción del Proyecto](#-descripción-del-proyecto)
-2. [Arquitectura y Paquetes](#-arquitectura-y-paquetes)
-3. [Estructuras de Datos Implementadas](#-estructuras-de-datos-implementadas)
-4. [Diagrama del Sistema](#-diagrama-del-sistema)
-5. [Requisitos y Ejecución](#-requisitos-y-ejecución)
+
+1. [Descripción del Proyecto](#1-descripción-del-proyecto)
+2. [Arquitectura y Paquetes](#2-arquitectura-y-paquetes)
+3. [Estructuras de Datos Implementadas](#3-estructuras-de-datos-implementadas)
+4. [Diagrama del Sistema](#4-diagrama-del-sistema)
+5. [Requisitos y Ejecución](#5-requisitos-y-ejecución)
 
 ---
 
-## Descripción del Proyecto
+## 1. Descripción del Proyecto
 
-**Código Defensa Torre** es una aplicación desarrollada en **Java** bajo el paradigma de **Programación Orientada a Objetos (POO)**. El sistema simula la lógica de control de un juego de defensa de torres, gestionando entidades clave como torres de defensa, enemigos y oleadas mediante el uso exclusivo de **estructuras de datos hechas desde cero** sin depender de las colecciones predeterminadas de Java como `ArrayList` o `LinkedList` para la lógica principal de negocio.
+**Código Defensa Torre** es una aplicación desarrollada en **Python** que simula la lógica de control de un juego del género **Tower Defense**. El sistema gestiona entidades clave como torres defensivas, unidades enemigas y oleadas tácticas mediante el uso exclusivo de **estructuras de datos hechas desde cero**, evitando depender de librerías o contenedores avanzados predeterminados para la lógica fundamental de negocio.
 
 ---
 
-## Arquitectura y Paquetes
+## 2. Roles de trabajo
 
-El proyecto se encuentra estructurado de manera modular para separar la interfaz de usuario, las entidades del modelo y la lógica de negocio:
+| Integrante         | Responsabilidad                                              |
+|--------------------|----------------------------------------------------------------|
+| Jullisa Altamirano | Revisión y fusión (merge) de commits                          |
+| Andrés Llamuca     | Clases `ListaSecuencialTorre` y `NodoEnemigo`                 |
+| Joseph Romo        | Clases del modelo: `Torre`, `Oleada`, `Enemigo`                |
+| Jeremy Torosina    | Interfaz gráfica y clase `ListaCircularOleada`                 |
+| Edith Tuza         | Clases `ListaDobleEnemigos` y `NodoOleada`                     |
+
+---
+
+## 3. Arquitectura y Paquetes 
+
+El proyecto se encuentra organizado de manera modular dentro del directorio `Python/`, separando claramente la interfaz gráfica o de control, las entidades del modelo de dominio y las estructuras de negocio:
 
 ```text
 Codigo-Defensa-Torre/
-│
-├── app/
-│   └── TowerDefenseApp.java          # Clase principal con la interfaz de consola e interacción (Scanner)
-│
-├── modelo/
-│   ├── Torre.java                    # Entidad que define atributos y métodos de las torres
-│   ├── Enemigo.java                  # Entidad que define atributos y estados de los enemigos
-│   └── Oleada.java                   # Entidad que agrupa y administra las oleadas
-│
-├── negocio/
-│   ├── ListaSecuencialTorres.java    # Gestión de torres mediante arreglos/listas secuenciales
-│   ├── ListaDobleEnemigos.java       # Gestión dinámica de enemigos con lista doblemente enlazada
-│   ├── ListaCircularOleadas.java     # Gestión cíclica de las oleadas del juego
-│   ├── NodoEnemigo.java              # Nodo para la lista doble de enemigos
-│   └── NodoOleada.java               # Nodo para la lista circular de oleadas
-│
-└── Diagrama/
-    └── Diagrama.md                   # Documentación gráfica y esquemas UML del sistema
+├── Diagrama/
+│   └── diagrama.md                # Documentación gráfica de clases (Mermaid)
+└── Python/
+    ├── app/
+    │   └── tower_defense_gui.py       # Controlador principal e interfaz de usuario
+    ├── modelo/
+    │   ├── torre.py                   # Entidad que define atributos y métodos de las torres
+    │   ├── enemigo.py                 # Entidad que define atributos y estados de los enemigos
+    │   └── oleada.py                  # Entidad que agrupa los parámetros de las oleadas
+    └── negocio/
+        ├── ListaSecuencialTorres.py   # Gestión estática de torres mediante arreglos
+        ├── NodoEnemigo.py             # Nodo bidireccional auxiliar para enemigos
+        ├── lista_doble_enemigos.py    # Gestión dinámica de enemigos con lista doblemente enlazada
+        ├── nodo_oleada.py             # Nodo auxiliar para soporte de estructuras circulares
+        └── lista_circular_oleadas.py  # Gestión cíclica y continua de las oleadas de enemigos[cite: 3]

@@ -4,12 +4,12 @@ class ListaSecuencialTorres:
 
     CAPACIDAD_MAXIMA = 50
 
-    def __int__(self):
+    def __init__(self):
         self.arreglo = [None] * self.CAPACIDAD_MAXIMA
         self.tamanio = 0
 
-    def insetar(self, torre):
-        if self.tanamio >= self.CAPACIDAD_MAXIMA:
+    def insertar(self, torre):
+        if self.tamanio >= self.CAPACIDAD_MAXIMA:
             return False
         self.arreglo[self.tamanio] = torre
         self.tamanio += 1
