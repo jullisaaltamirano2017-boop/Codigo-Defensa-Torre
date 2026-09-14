@@ -20,7 +20,19 @@ Prueba práctica de Estructuras de Datos aplicada a un videojuego bajo el paradi
 
 ---
 
-## 2. Arquitectura y Paquetes
+## 2. Roles de trabajo
+
+| Integrante         | Responsabilidad                                              |
+|--------------------|----------------------------------------------------------------|
+| Jullisa Altamirano | Revisión y fusión (merge) de commits                          |
+| Andrés Llamuca     | Clases `ListaSecuencialTorre` y `NodoEnemigo`                 |
+| Joseph Romo        | Clases del modelo: `Torre`, `Oleada`, `Enemigo`                |
+| Jeremy Torosina    | Interfaz gráfica y clase `ListaCircularOleada`                 |
+| Edith Tuza         | Clases `ListaDobleEnemigos` y `NodoOleada`                     |
+
+---
+
+## 3. Arquitectura y Paquetes 
 
 El proyecto se encuentra organizado de manera modular dentro del directorio `Python/`, separando claramente la interfaz gráfica o de control, las entidades del modelo de dominio y las estructuras de negocio:
 
